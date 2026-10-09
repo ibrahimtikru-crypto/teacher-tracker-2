@@ -65,3 +65,37 @@ td.today{box-shadow:inset 0 0 0 2px var(--green)}
 .only-narrow{display:none}
 @media (max-width:640px){.only-wide{display:none}.only-narrow{display:block}.clockbox{text-align:left;width:100%}}
 footer{max-width:960px;margin:0 auto;padding:10px 14px 30px;color:var(--muted);font-size:.78rem}
+
+/* ---- Phase 4-5: find and assign substitute ---- */
+.h2{margin:0 0 10px;font-size:1.25rem}.h3{margin:0 0 6px}
+.bigselect{width:100%;font-size:1.05rem;padding:14px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);margin-bottom:12px;min-height:52px;font-family:inherit}
+.bigselect:focus{outline:none;border-color:var(--brand)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.subsummary h3{margin:0 0 8px}
+.okc{color:var(--green)}.warnc{color:var(--yellow)}
+.shares{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btn.small{min-height:44px;padding:8px 14px;font-size:.85rem}.btn.wa{background:#1b8a4b}
+.lesson{border-left:8px solid var(--yellow)}.lesson.covered{border-left-color:var(--green)}
+.lhead{display:flex;justify-content:space-between;gap:10px;font-size:1.05rem}.lhead span{color:var(--muted)}
+.lbody{margin:6px 0 10px}.lbody small{display:block;color:var(--muted)}
+.coverbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:10px 12px;border-radius:10px;background:var(--green-bg);color:var(--green);margin-bottom:6px}
+.coverbar small{color:var(--muted)}.coverbar.need{background:var(--yellow-bg);color:var(--yellow);font-weight:700}
+.cancelbtn{margin-left:auto;min-height:40px;padding:6px 14px;border-radius:10px;border:2px solid var(--red);background:transparent;color:var(--red);font-weight:800;cursor:pointer}
+.findbtn{margin-top:6px}
+.cands{margin-top:8px}.ch{margin:12px 0 4px}
+.others summary{cursor:pointer;font-weight:700;padding:10px 0}
+.stars{color:#e0a800;letter-spacing:1px;margin-left:8px;white-space:nowrap}.stars .dim{color:var(--line)}
+.subhead,.subrow{display:grid;grid-template-columns:1.4fr .7fr 1.2fr 1.2fr 1.4fr .8fr;gap:8px;align-items:center;text-align:left}
+.subhead{padding:6px 10px;font-size:.78rem;color:var(--muted);font-weight:700;text-transform:uppercase;border-bottom:2px solid var(--line)}
+.subrow{padding:10px;border-bottom:1px solid var(--line);min-height:56px}
+.subrow small{display:block;color:var(--muted)}
+.linkbtn{border:0;background:transparent;color:var(--ink);font:inherit;font-weight:700;text-align:left;padding:6px 0;cursor:pointer;text-decoration:underline dotted}
+.assignbtn{min-height:44px;width:100%;padding:8px 10px;border:0;border-radius:10px;background:var(--brand);color:#fff;font-weight:800;cursor:pointer}
+.assignbtn:disabled,.btn:disabled{opacity:.5;cursor:wait}
+#subMsg{margin:8px 0;border-radius:10px}#subMsg.ok{background:var(--green-bg);color:var(--green)}#subMsg.err{background:var(--red-bg);color:var(--red)}
+@media (max-width:760px){
+  .two{grid-template-columns:1fr}
+  .subhead{display:none}
+  .subrow{grid-template-columns:1fr auto;grid-template-areas:"name status" "loc loc" "subj subj" "why why" "act act";gap:4px 10px;padding:14px 10px}
+  .sr-name{grid-area:name}.sr-status{grid-area:status}.sr-loc{grid-area:loc}.sr-subj{grid-area:subj;color:var(--muted)}.sr-why{grid-area:why}.sr-act{grid-area:act}
+}
