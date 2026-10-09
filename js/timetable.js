@@ -148,6 +148,20 @@ var HOWTT = (function () {
     return { days: days, rows: rows, lessonCount: count };
   }
 
+  /** 'YYYY-MM-DD' -> weekday name (no timezone drift). */
+  function dayOfDate(ds) {
+    var p = ds.split('-');
+    return DAY_ORDER[(new Date(Date.UTC(+p[0], +p[1] - 1, +p[2])).getUTCDay() + 6) % 7];
+  }
+  /** Today's date as YYYY-MM-DD in the school timezone. */
+  function todayISO(tz) {
+    return new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+  }
+  function fmtDateLong(ds) {
+    var p = ds.split('-'), mon = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    return dayOfDate(ds) + ', ' + (+p[2]) + ' ' + mon[+p[1] - 1] + ' ' + p[0];
+  }
+
   function searchTeachers(idx, q) {
     q = String(q || '').toLowerCase().trim();
     var list = idx.data.teachers;
@@ -160,6 +174,7 @@ var HOWTT = (function () {
 
   return { DAY_ORDER: DAY_ORDER, schoolNow: schoolNow, fmtTime: fmtTime, lessonLabel: lessonLabel,
            buildIndex: buildIndex, getStatus: getStatus, getWeek: getWeek, periodAt: periodAt,
-           searchTeachers: searchTeachers, nextLesson: nextLesson };
+           searchTeachers: searchTeachers, nextLesson: nextLesson,
+           describe: describe, slotFor: slotFor, dayOfDate: dayOfDate, todayISO: todayISO, fmtDateLong: fmtDateLong };
 })();
 if (typeof module !== 'undefined') module.exports = HOWTT;
