@@ -31,31 +31,58 @@
 
   <div id="app" hidden>
     <nav class="menu" aria-label="Main menu">
-      <a class="mbtn on" href="#find">🔍 FIND TEACHER</a>
-      <a class="mbtn on" href="#find">📅 TEACHER TIMETABLE</a>
+      <a class="mbtn on" data-view="find" href="#find">🔍 FIND TEACHER</a>
+      <a class="mbtn" data-view="find" href="#find">📅 TEACHER TIMETABLE</a>
+      <a class="mbtn" data-view="substitute" href="#substitute">🔁 FIND SUBSTITUTE</a>
       <span class="mbtn soon">📊 LIVE TEACHER STATUS<small>Phase 3</small></span>
-      <span class="mbtn soon">🔁 FIND SUBSTITUTE<small>Phase 4</small></span>
       <span class="mbtn soon">🚪 ROOM SEARCH<small>Phase 3</small></span>
     </nav>
 
-    <section id="find" class="card">
-      <label for="search" class="biglabel">Teacher</label>
-      <input id="search" type="search" class="bigsearch" placeholder="Type a name or subject…" autocomplete="off" autocapitalize="off" spellcheck="false">
-      <ul id="results" class="results" aria-label="Teachers"></ul>
-    </section>
+    <div id="findView">
+      <section id="find" class="card">
+        <label for="search" class="biglabel">Teacher</label>
+        <input id="search" type="search" class="bigsearch" placeholder="Type a name or subject…" autocomplete="off" autocapitalize="off" spellcheck="false">
+        <ul id="results" class="results" aria-label="Teachers"></ul>
+      </section>
+      <div id="statusArea"></div>
+      <button type="button" id="fullBtn" class="btn wide" hidden>VIEW FULL TIMETABLE</button>
+      <section id="fullArea" class="card" hidden></section>
+    </div>
 
-    <div id="statusArea"></div>
-    <button type="button" id="fullBtn" class="btn wide" hidden>VIEW FULL TIMETABLE</button>
-    <section id="fullArea" class="card" hidden></section>
+    <div id="subView" hidden>
+      <section class="card">
+        <h2 class="h2">Find substitute</h2>
+        <label for="absentSel" class="biglabel">Absent teacher</label>
+        <select id="absentSel" class="bigselect"></select>
+        <label for="dateInp" class="biglabel">Date</label>
+        <input id="dateInp" type="date" class="bigselect">
+        <button type="button" id="findSubBtn" class="btn wide">SHOW LESSONS</button>
+      </section>
+
+      <section class="card" id="adminBox">
+        <h3 class="h3">Management sign-in</h3>
+        <p class="note" id="adminNote">Only management can assign substitutes. Searching is open to everyone.</p>
+        <div id="adminForm" class="two">
+          <div><label for="adminName" class="biglabel">Your name</label><input id="adminName" class="bigselect" autocomplete="off"></div>
+          <div><label for="adminPin" class="biglabel">PIN</label><input id="adminPin" type="password" class="bigselect" autocomplete="off"></div>
+        </div>
+        <button type="button" id="adminBtn" class="btn wide">SIGN IN</button>
+        <p class="msg" id="adminMsg" role="status"></p>
+      </section>
+      <div id="subMsg" class="banner" role="status"></div>
+      <div id="subResults"></div>
+    </div>
   </div>
 </main>
 
 <footer>Times use the school timezone (Asia/Karachi). “Location” means the scheduled location in the timetable, not GPS.</footer>
 
 <script src="js/config.js"></script>
+<script src="data/bootstrap.js"></script>
 <script src="js/timetable.js"></script>
 <script src="js/api.js"></script>
 <script src="js/ui.js"></script>
+<script src="js/substitute.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
